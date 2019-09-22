@@ -12,16 +12,24 @@
 
       <!--输入框组件-->
       <div class="inputs">
-        <AuthInput
-        placeholder="手机号码"
-        
-        :value='form.username'
-        @input="handleUsername"
+          <AuthInput
+          placeholder="手机号码"
+          :value='form.username'
+          @input="handleUsername"
 
-        :rule="/^1[0-9]{4,10}$/"
-        err_message="手机号码格式不正确"
-        >
-        </AuthInput>  
+          :rule="/^1[0-9]{4,10}$/"
+          err_message="手机号码格式不正确"
+          ></AuthInput> 
+          
+          <AuthInput
+          placeholder="密码"
+          
+          v-model="form.password"
+
+          :rule="/^[0-9a-zA-Z]{3,12}]$/"
+          err_message="密码格式不正确"
+          >
+          </AuthInput> 
         
         <!--登录按钮-->
         <button @click="handleSubmit">登录按钮</button>
