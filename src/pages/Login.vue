@@ -10,8 +10,9 @@
           <span class="iconfont iconnew"></span>
       </div>
 
-      <!--输入框组件-->
+      <!--用户密码输入框-->
       <div class="inputs">
+        <!--输入框组件-->
           <AuthInput
           placeholder="手机号码"
           :value='form.username'
@@ -31,14 +32,16 @@
           </AuthInput> 
         
         <!--登录按钮-->
-        <button @click="handleSubmit">登录按钮</button>
+        <!--<button @click="handleSubmit">登录按钮</button>-->
+        <AuthButton text="登录" @click="handleSubmit"/>   
       </div>
   </div>
 </template>
 
 <script>
-//导入输入框组件
+//导入组件
 import AuthInput from "@/components/AuthInput";
+import AuthButton from "@/components/AuthButton";
 
 export default {
     data(){
@@ -52,7 +55,8 @@ export default {
     },
     //注册组件
   components:{
-    AuthInput
+    AuthInput,
+    AuthButton
   },
 
   methods:{
