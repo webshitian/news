@@ -1,13 +1,9 @@
 <template>
 	<!-- template最外层只能包含一个标签 -->
-  	<div class="colorRed">
-      这是第一个单文件组件，{{message}}, 
-
-      <router-link to="/login">登录页</router-link>
-      
+  	<div>
+      <!-- 组件占位符 -->
       <router-view></router-view>
   </div>
-    
 </template>
 
 <script>
@@ -21,9 +17,26 @@ export default {
 }
 </script>
 
-<style>
-/* 组件样式，会污染全局 */
-    .colorRed{
-        color:red;
-    }
+<style lang="less">
+/* 公共样式*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    color: inherit;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+ul,li,ol{
+    list-style: none;
+}
+
+i,em{
+    font-style: normal;
+}
 </style>
