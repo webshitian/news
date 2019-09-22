@@ -42,6 +42,7 @@
 //导入组件
 import AuthInput from "@/components/AuthInput";
 import AuthButton from "@/components/AuthButton";
+// import axios from "axios";
 
 export default {
     data(){
@@ -67,6 +68,14 @@ export default {
     //表单提交
     handleSubmit(){
       console.log(this.form)
+
+      this.$axios({  
+        url:"http://localhost:3000/login",
+        method:"POST",//method相当于type
+        data:this.form 
+      }).then( res => { //.then的回调函数相当于success
+        console.log(res)
+      });
     }
   }
 }
