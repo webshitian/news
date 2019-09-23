@@ -24,6 +24,7 @@
           
           <AuthInput
           placeholder="密码"
+          type="password"
           v-model="form.password"
 
           :rule="/^[0-9a-zA-Z]{3,12}$/"
@@ -32,6 +33,10 @@
           </AuthInput> 
         
         <!--登录按钮-->
+        <p class="tips">
+          没有账号？ 
+          <router-link to="/register">去注册</router-link>
+        </p>
         <!--<button @click="handleSubmit">登录按钮</button>-->
         <AuthButton text="登录" @click="handleSubmit"/>   
       </div>
@@ -117,5 +122,12 @@ export default {
       margin-bottom: 20px;
     }
 }
-
+.tips{
+  text-align: right;
+  margin-bottom: 20px;
+  
+  a{
+    color:#3385ff;
+  }
+}
 </style>

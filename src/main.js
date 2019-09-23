@@ -12,7 +12,9 @@ import VueRouter from "vue-router";
 import App from "./App.vue";
 //导入Login.vue
 import Login from "./pages/Login.vue"
+import Register from "@/pages/Register";
 
+import "./assets/styles/iconfont.css";
 
 //在.vue文件中要使用router-link或者router-view。需要注册下插件
 Vue.use(VueRouter);
@@ -25,7 +27,8 @@ axios.defaults.baseURL = "http://localhost:3000";
 
 //路由:2.创建路由配置
 const routes = [
-    {path:"/login",component:Login}
+    {path:"/login",component:Login},
+    { path: "/register", component: Register}
 ]
 //路由:3.创建对象
 const router = new VueRouter({
