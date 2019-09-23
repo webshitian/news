@@ -63,7 +63,13 @@ module.exports = {
             {
                 test: /\.vue$/,
                 use: ['vue-loader']
-			}
+			},
+    
+            {
+                test:/\.(ttf|eot|woff|woff2|svg)$/,
+                use:['file-loader']
+            }
+
         ]
     },
 

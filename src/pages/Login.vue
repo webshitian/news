@@ -6,9 +6,13 @@
         </div>  
       
       <!--logo-->
-      <div class="logo">
+      <!--<div class="logo">
           <span class="iconfont iconnew"></span>
-      </div>
+      </div>-->
+
+      <svg class="logo" aria-hidden="true">
+        <use xlink:href="#icon-xinlang"></use>
+      </svg>
 
       <!--用户密码输入框-->
       <div class="inputs">
@@ -109,16 +113,26 @@ export default {
 .logo {
   display: flex;
   justify-content: center;
+  width: 0.7em;
+  height: 0.7em;
+  padding-left: 0.9em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  display: block;
+  font-size: 126/360*100vw;
 
-  span {
-    display: block;
-    font-size: 126/360*100vw;
-    color: #d81e06;
-  }
+  // span {
+  //   display: block;
+  //   font-size: 126/360*100vw;
+  //   color: #d81e06;
+  // }
 }
 
 .inputs{
+    margin-top: 30px;  
     input{
+      
       margin-bottom: 20px;
     }
 }
@@ -130,4 +144,12 @@ export default {
     color:#3385ff;
   }
 }
+
+// .icon {
+//   width: 1em;
+//   height: 1em;
+//   vertical-align: -0.15em;
+//   fill: currentColor;
+//   overflow: hidden;
+// }
 </style>

@@ -6,9 +6,13 @@
       </div>
 
       <!-- logo -->
-      <div class="logo">
+      <!--<div class="logo">
         <span class="iconfont iconnew"></span>
-      </div>
+      </div>-->
+
+      <svg class="logo" aria-hidden="true">
+        <use xlink:href="#icon-xinlang"></use>
+      </svg>
 
       <!-- 用户名密码输入框 -->
       <div class="inputs">
@@ -100,35 +104,59 @@ export default {
 </script>
 
 <style scoped lang="less">
-  // scoped 作用域样式
-  // lang声明样式的类型
-  .container{
-    padding:20px;
+    // scoped 作用域样式
+    //lang声明样式的类型
+
+.container {
+  padding: 20px;
+}
+
+.close {
+  span {
+    font-size: 27/360 * 100vw;
   }
-  .close{
-    span{
-      font-size: 27 / 360 * 100vw;
-    }
-  }
-  .logo{
-    display: flex;
-    justify-content: center;
-    span{
-      display: block;
-      font-size: 126 / 360 * 100vw;
-      color: #d81e06;
-    }
-  }
-  .inputs{
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  width: 0.7em;
+  height: 0.7em;
+  padding-left: 0.9em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  display: block;
+  font-size: 126/360*100vw;
+
+  // span {
+  //   display: block;
+  //   font-size: 126/360*100vw;
+  //   color: #d81e06;
+  // }
+}
+
+.inputs{
+    margin-top: 30px;  
     input{
+      
       margin-bottom: 20px;
     }
+}
+.tips{
+  text-align: right;
+  margin-bottom: 20px;
+  
+  a{
+    color:#3385ff;
   }
-  .tips{
-    text-align: right;
-    margin-bottom: 20px;
-    a{
-      color:#3385ff;
-    }
-  }
-</style> 
+}
+
+// .icon {
+//   width: 1em;
+//   height: 1em;
+//   vertical-align: -0.15em;
+//   fill: currentColor;
+//   overflow: hidden;
+// }
+</style>

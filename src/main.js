@@ -14,7 +14,8 @@ import App from "./App.vue";
 import Login from "./pages/Login.vue"
 import Register from "@/pages/Register";
 
-import "./assets/styles/iconfont.css";
+import "@/assets/styles/iconfont.css";
+import "@/assets/styles/iconfont.js";
 
 //在.vue文件中要使用router-link或者router-view。需要注册下插件
 Vue.use(VueRouter);
