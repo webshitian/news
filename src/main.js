@@ -44,23 +44,24 @@ const router = new VueRouter({
 //to要跳转之后的页面，去哪里
 //from跳转之前的页面，来自哪里
 //next必须要调用next()。调用才会执行跳转，还可以重定向,next("/login")
-router.beforeEach((to,from,next)=>{
-    //是否有token
+router.beforeEach( (to, from, next) => {
+    // 是否有token
     const hasToken = localStorage.getItem("token");
-    
-    //判断是否需要登录权限页面
-    if(to.path === '/personal'){
-        
-        //判断本地是否有token
+
+    // 判断是否是需要登陆权限的页面
+    if(to.path === "/personal"){
+
+        // 判断本地是否有token
         if(hasToken){
-            //正常跳转
+            // 正常跳转
             next();
         }else{
-            //没有token正常跳转到登录
+            // 没有token正常跳转到登录
             next("/login")
         }
+
     }else{
-        //所有人都可以访问的页面正常浏览
+        // 所有人都可以访问的页面正常浏览
         next();
     }
 

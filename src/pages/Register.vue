@@ -2,7 +2,8 @@
   <div class="container">
       <!-- 关闭的按钮 -->
       <div class="close">
-        <span class="iconfont iconicon-test"></span>
+        <!--<span class="iconfont iconicon-test"></span>-->
+        <span class="iconfont ">&#xe613;</span>
       </div>
 
       <!-- logo -->

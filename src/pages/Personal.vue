@@ -12,11 +12,15 @@
                     2019年9月24日16:28:54
                 </div>
             </div>
-            <span class="iconfont iconjiantou1"></span>
+            <span class="iconfont">&#xe742;</span>
         </div>
         
         <!--调用条形组件-->
-        <CellBar/>
+        <CellBar label="我的关注" text="关注的用户"/>
+        <CellBar label="我的跟帖" text="跟帖/回复"/>
+        <CellBar label="我的收藏" text="文章/视频"/>
+        <CellBar class="log_out" label="退出" @click="handleLogout"/>
+        
     </div>
     
 </template>
@@ -36,6 +40,17 @@ export default {
         CellBar
     },
     
+    methods:{
+        //退出登录
+        handleLogout(){
+            //清除本地的token和id
+            localStorage.removeItem("token");
+            localStorage.removeItem("user_id");
+
+            //replace替换上一个页面
+            this.$router.push("/login");
+        }
+    },
     mounted(){
         //请求个人资料接口
         this.$axios({
@@ -90,5 +105,9 @@ export default {
             font-size: 14px;
             margin-top: 5px;
         }
+    }
+    .log_out{
+        padding-top:21rem;
+        border-bottom: none;
     }
 </style>
