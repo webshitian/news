@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="profile">
-            <img src="http://img1.imgtn.bdimg.com/it/u=2357912857,682090914&fm=26&gp=0.jpg" alt="">
-            
+            <!--$axios.defaults.baseURL读取axios的服务器路径-->
+            <img :src="$axios.defaults.baseURL+profile.head_img" alt="">
             <div class="profile-center">
                 <div class="name">
                     <span class="iconfont iconxingbienan"></span>
-                    web势天
+                    {{profile-center}}
                 </div>            
                 <div class="time">
                     2019年9月24日16:28:54
@@ -26,6 +26,12 @@
 import CellBar from "@/components/CellBar";
 
 export default {
+    data(){
+        return{
+            //个人信息
+            profile:{}
+        }
+    },
     components: {
         CellBar
     },
@@ -39,7 +45,10 @@ export default {
                 Authorization:localStorage.getItem("token")
             }
         }).then(res=>{
-            console.log(res)
+            const{data} = res.data;
+
+            //保存到data
+            this.profile = data;
         })
     }
 }
