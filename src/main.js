@@ -2,6 +2,7 @@
 import Vue from "vue";
 //导入vant-ui组件
 import Vant from 'vant';
+import {Toast} from 'vant';
 // 导入axios
 import axios from "axios";
 //路由：1.导入路由构造函数
@@ -35,6 +36,22 @@ const routes = [
 const router = new VueRouter({
     routes
 })
+
+//axios的统一的拦截器，拦截响应
+//使用axios的拦截器统一处理响应错误
+//固定的声明
+//interceptors 英[ˌɪntəˈsɛptəz] inter(s哑)的
+axios.interceptors.response.use(res => {
+    const {message,statusCode} = res.data;
+
+    if(statusCode === 401){
+        Toast.fail(message);
+    }
+
+    //必须要返回res
+    return res;
+    
+});
 
 new Vue({
     el: "#app",
