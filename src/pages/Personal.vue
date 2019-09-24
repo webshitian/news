@@ -7,19 +7,28 @@
                 <div class="name">
                     <span class="iconfont iconxingbienan"></span>
                     web势天
+                </div>            
+                <div class="time">
+                    2019年9月24日16:28:54
                 </div>
             </div>
-            <div class="time">
-                2019年9月24日16:28:54
-            </div>
+            <span class="iconfont iconjiantou1"></span>
         </div>
-        <span class="iconfont iconjiantou1"></span>
+        
+        <!--调用条形组件-->
+        <CellBar/>
     </div>
+    
 </template>
 
 <script>
+//导入条形组件
+import CellBar from "@/components/CellBar";
+
 export default {
-    
+    components: {
+        CellBar
+    }
 }
 </script>
 
