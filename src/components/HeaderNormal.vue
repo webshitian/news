@@ -1,7 +1,7 @@
 <template>
   <!--个人中心页板块的头部-->
   <div class="header">
-      <span class="iconfont icon-jiantou2" @click="$router.back()"></span>
+      <span class="iconfont" @click="$router.back()">&#xe630;</span>
       <h4>{{title}}</h4>
       <span> > </span>
   </div>

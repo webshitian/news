@@ -1,6 +1,7 @@
 <template>
   <div>
-      <HeaderNormal title="编辑资料"
+      <!--头部-->
+      <HeaderNormal title="编辑资料"/>
   </div>
 </template>
 
