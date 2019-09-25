@@ -49,7 +49,7 @@
       </div>
 
       <p class="tips">
-        有账号？ 
+        有账号! 
         <router-link to="/login">去登录</router-link>
       </p>
 

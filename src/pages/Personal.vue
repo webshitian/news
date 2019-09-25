@@ -1,20 +1,25 @@
 <template>
     <div>
-        <div class="profile">
-            <!--$axios.defaults.baseURL读取axios的服务器路径-->
-            <img :src="profile.head_img" alt="">
-            <div class="profile-center">
-                <div class="name">
-                    <span class="iconfont iconxingbienan"></span>
-                    {{profile.nickname}}
-                </div>            
-                <div class="time">
-                    2019年9月24日16:28:54
+        <router-link to="/edit_profile">
+            <div class="profile">
+                <!--$axios.defaults.baseURL读取axios的服务器路径-->
+                <img :src="profile.head_img" alt="">
+                <div class="profile-center">
+                    <div class="name">
+                        <!--<span class="iconfont iconxingbienan"></span>-->
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-xingbienan
+    "></use>
+                        </svg>
+                        {{profile.nickname}}
+                    </div>            
+                    <div class="time">
+                        2019年9月24日16:28:54
+                    </div>
                 </div>
+                <span class="iconfont">&#xe742;</span>
             </div>
-            <span class="iconfont">&#xe742;</span>
-        </div>
-        
+        </router-link>
         <!--调用条形组件-->
         <CellBar label="我的关注" text="关注的用户"/>
         <CellBar label="我的跟帖" text="跟帖/回复"/>
@@ -96,8 +101,12 @@ export default {
             padding: 0 10px;
         }
         .name{
-            span{
-                color:#75b9eb;
+            .icon {
+                width: 1.2em;
+                height: 1.2em;
+                vertical-align: -0.15em;
+                fill: currentColor;
+                overflow: hidden;
             }
         }
         .time{
@@ -110,4 +119,5 @@ export default {
         padding-top:21rem;
         border-bottom: none;
     }
+    
 </style>
