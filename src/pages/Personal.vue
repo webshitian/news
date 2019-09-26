@@ -6,6 +6,7 @@
                 <img :src="profile.head_img" alt="">
                 <div class="profile-center">
                     <div class="name">
+                        <!--这里可以使用v-if判断是否显示，用profile.gender来判断-->
                         <!--<span class="iconfont iconxingbienan"></span>-->
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-xingbienan
@@ -119,5 +120,10 @@ export default {
         padding-top:21rem;
         border-bottom: none;
     }
-    
+    /*
+        8,9,10,11,12,
+        13,14,15,16,17,
+        18,19,20,21,22,
+        23,0。
+    */
 </style>
