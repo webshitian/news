@@ -83,7 +83,7 @@ export default {
            //显示性别的弹窗
            show3:false,
            
-           genderCache:`1`
+           genderCache:`0`,
        };
    },
    
@@ -170,7 +170,14 @@ export default {
        
        //编辑性别
        handlGender(){
-           
+           //把性别转换为数字
+           const gender = +this.genderCache;
+
+           //编辑性别
+           this.editProfile({gender},() => {
+               //修改成功之后替换页面显示的性别
+               this.profile.gender = gender;
+           });
        }
    },
    mounted(){
