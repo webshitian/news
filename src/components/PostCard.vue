@@ -14,6 +14,29 @@
         </p>
     </div>
 
+    <div class="card-img">
+            <img :src="post.cover[0].url" alt="">
+    </div>
+  </div>
+    <!-- 3张图片显示的布局 -->
+    <div class="img-cart" v-if="post.cover.length >= 3">
+        <div class="post-title">
+            {{post.title}}
+        </div>
+        <div class="img-list">
+            <img 
+            v-for="(item, index) in post.cover" 
+            :key="index"
+            :src="item.url" 
+            v-if="index < 3"
+            >
+        </div>
+        <p class="post-info">
+            <span>{{post.user.nickname}}</span>
+            <span>{{post.comment_length}}跟帖</span>
+        </p>
+    </div>
+   
     <!--视频显示的布局-->
     <div class="video-cart" v-if="post.type ===2 && post.cover.length ===1">
         <div class="post-title">
@@ -30,35 +53,14 @@
             <span>{{post.comment_length}}跟帖</span>
         </p>
     </div>
-    <div class="card-img">
-        <img :src="post.cover[0].url" alt="">
-    </div>
-  </div>
-  <!--3张图片显示的布局-->
-  <div class="img-cart" v-if="post.cover.length >= 3">
-    <div class="post-title">
-        {{post.title}}
-    </div>
-    <div class="img-list">
-        <img 
-        v-for="(item,index) in post.cover"
-        :key="index"
-        :src="item.url"
-        v-if="index < 3"
-        >
-    </div>
-    <p class="post-info">
-        <span>{{post.user.nickname}}</span>
-        <span>{{post.comment_length}}跟帖</span>
-    </p>
-  </div>
+  
 </div>  
 </template>
 
 <script>
 export default {
 
-    props:['post']
+    props: ['post']
 }
 </script>
 
@@ -151,17 +153,20 @@ export default {
             }
             .video-layer{
                 position: absolute;
-                background: rgba(0, 0, 0, 0.5);
-                width:46 / 360 * 100vw;
-                height:46 / 360 * 100vw;
+                background: rgba(0, 0, 0, 0.2);
+                width:55 / 360 * 100vw;
+                height:55 / 360 * 100vw;
                 border-radius: 50%;
                 display: flex;
                 justify-content: center;
-                align-items: center;
+                // align-items: center;
                 flex-shrink: 0;
                 i{
+                    position: absolute;
                     color: #fff;
-                    font-size: 30px;
+                    font-size: 25px;
+                    top:-0.5rem;
+                    left: 1.1rem;
                 }
             }
         }

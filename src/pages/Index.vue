@@ -27,11 +27,10 @@
         :title="item.name" 
         >
             <!--文章模块组件，post是单篇文章详情-->
-            <PostCard
-            v-for="(item,index) in posts"
+            <PostCard 
+            v-for="(item, index) in posts" 
             :key="index"
-            :post="item"
-            />
+            :post="item"/>
         </van-tab>
       </van-tabs>
   </div>
@@ -86,13 +85,12 @@ export default {
             this.categories = data;
         });
         
-        //请求文章列表
+        // 请求文章列表
         this.$axios({
-            url:`/post?category=${this.cid}`
-        }).then(res=>{
+            url: `/post?category=${this.cid}`
+        }).then(res => {
             const {data} = res.data;
-
-            //默认赋值给头条的列表
+            // 默认赋值给头条的列表
             this.posts = data;
         })
     }
