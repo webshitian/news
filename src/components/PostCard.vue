@@ -2,7 +2,7 @@
 
 <div>
   <!--单张图片显示的布局-->  
-  <div class="card" v-if="post.cover.length > 0 && post.cover.length < 3">
+  <div class="card" v-if="post.cover.length > 0 && post.cover.length < 3 && post.type ===1">
     <!--左侧文字-->
     <div class="card-left">
         <div class="post-title">
@@ -14,6 +14,19 @@
         </p>
     </div>
 
+    <!--视频显示的布局-->
+    <div class="video-cart" v-if="post.type ===2 && post.cover.length ===1">
+        <div class="post-title">
+            {{post.title}}
+        </div>
+        <div class="video">
+            <img :src="post.cover[0].url" alt="">
+        </div>
+        <p class="post-info">
+            <span>{{post.user.nickname}}</span>
+            <span>{{post.comment_length}}跟帖</span>
+        </p>
+    </div>
     <div class="card-img">
         <img :src="post.cover[0].url" alt="">
     </div>
@@ -103,6 +116,31 @@ export default {
                 width: 33%;
                 height: 80 / 360 * 100vw;
                 object-fit: cover;
+            }
+        }
+        .post-info{
+            font-size:12px;
+            color:#999;
+        }
+    }
+    .video-cart{
+        padding: 20px 10px;
+        border-bottom: 1px #ccc solid;
+        .post-title{
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+        .video {
+            margin-bottom: 5px;
+            img{
+                display: block;
+                width:100%;
+                height: 170 / 360 * 100 vw;
             }
         }
         .post-info{
