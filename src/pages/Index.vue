@@ -42,10 +42,19 @@ export default {
     data(){
           return{
                 // 当前m默认的栏目，没有登录应该等于0，有登录等于1，最终的效果为了默认显示头条
+                //随着栏目的切换会变化
                 active:localStorage.getItem("token") ? 1:0,
                 //栏目列表
-                categories:[]
+                categories:[],
+                //栏目id
+                cid:999
           }  
+    },
+    watch:{
+        active(){
+            this.cid = this.categories[this.active].id;
+            console.log(this.cid)
+        }
     },
     components:{
         PostCard
