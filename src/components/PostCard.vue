@@ -3,20 +3,16 @@
     <!--左侧文字-->
     <div class="card-left">
         <div class="post-title">
-            北京大兴国际机场地跨北京市大兴区和河北省
-            廊坊市，从高空俯瞰，北京大兴国际机场宛若
-            展翅的凤凰。该机场距离天安门的直线距离是
-            46公里，距离首都机场67公里，到雄安新区约65
-            公里，距天津市区75公里。
+            {{post.title}}
         </div>
         <p class="post-info">
-            <span>火星时报</span>
-            <span>100跟帖</span>
+            <span>{{post.user.nickname}}</span>
+            <span>{{post.comment_length}}跟帖</span>
         </p>
     </div>
 
     <div class="card-img">
-        <img src="http://img5.imgtn.bdimg.com/it/u=4218249526,2406754247&fm=26&gp=0.jpg" alt="">
+        <img :src="post.cover[0].url" alt="">
     </div>
   </div>
 </template>
@@ -24,6 +20,7 @@
 <script>
 export default {
 
+    props:['post']
 }
 </script>
 
@@ -35,6 +32,10 @@ export default {
         align-items: center;
         border-bottom: 1px #ccc solid;
         .card-left{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 80 / 360 * 100vw;
             flex:1;
             .post-title{
                 font-size: 14px;

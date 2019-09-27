@@ -26,9 +26,12 @@
         :key="index"
         :title="item.name" 
         >
-            <p v-for="index in 10">
-                <PostCard/>
-            </p>
+            <!--文章模块组件，post是单篇文章详情-->
+            <PostCard
+            v-for="(item,index) in posts"
+            :key="index"
+            :post="item"
+            />
         </van-tab>
       </van-tabs>
   </div>
@@ -47,7 +50,9 @@ export default {
                 //栏目列表
                 categories:[],
                 //栏目id
-                cid:999
+                cid:999,
+                //默认的头条文章列表
+                posts:[]
           }  
     },
     watch:{
@@ -79,6 +84,16 @@ export default {
             const{data} = res.data;
             //保存了栏目列表
             this.categories = data;
+        });
+        
+        //请求文章列表
+        this.$axios({
+            url:`/post?category=${this.cid}`
+        }).then(res=>{
+            const {data} = res.data;
+
+            //默认赋值给头条的列表
+            this.posts = data;
         })
     }
 }
