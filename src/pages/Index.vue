@@ -78,7 +78,10 @@ export default {
     watch:{
         active(){
             this.cid = this.categories[this.active].id;
-            console.log(this.cid)
+            // console.log(this.cid)
+            // console.log(this.active)
+            // 切换栏目时候加载当前栏目的数据
+            this.onLoad();
         }
     },
     components:{
@@ -87,8 +90,8 @@ export default {
     methods: {
         // 加载下一页的数据
         onLoad(){
-            // setTimeout(() => {
-            //     console.log("已经滚动到底部");
+            setTimeout(() => {
+                console.log("已经滚动到底部");
             //     // 请求文章列表
             //     this.$axios({
             //         url: `/post?category=${this.cid}&pageIndex=${this.pageIndex}&pageSize=${this.pageSize}`
@@ -107,6 +110,30 @@ export default {
             //     })
                 
             // }, 5000)
+            const category = this.categories[this.active];
+                console.log(category)
+                // 请求文章列表
+                this.$axios({
+                    url: `/post?category=${this.cid}
+                    &pageIndex=${category.pageIndex}
+                    &pageSize=${this.pageSize}`
+                }).then(res => {
+                    const {data} = res.data;
+                    // 没有更多的数据了
+                    if(data.length < this.pageSize){
+                        category.finished = true;
+                    }
+                    // 默认赋值给头条的列表
+                    category.posts = [
+                        ...category.posts, 
+                        ...data
+                    ];
+                    // 页数加一
+                    category.pageIndex++;
+                    // 告诉onload事件这次的数据加载已经完毕，下次可以继续的出发onload
+                    category.loading = false;
+                })
+            }, 2000)
         }
     },
     mounted(){
