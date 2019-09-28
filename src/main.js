@@ -18,7 +18,9 @@ import Personal from "@/pages/Personal";
 import EditProfile from "@/pages/EditProfile";
 import UserFollow from "@/pages/UserFollow";
 import UserComment from "@/pages/UserComment";
+import PostDetail from "@/pages/PostDetail";
 import Index from "@/pages/Index";
+
 
 import "@/assets/styles/iconfont.css";
 import "@/assets/styles/iconfont.js";
@@ -41,7 +43,8 @@ const routes = [
     {path:"/edit_profile",component:EditProfile},
     {path:"/user_follow",component:UserFollow},
     {path:"/user_comment",component:UserComment},
-    {path:"/",component:Index}
+    {path:"/",component:Index},
+    {path:"/post_detail/:id",component:PostDetail},
 ]
 //路由:3.创建对象
 const router = new VueRouter({
