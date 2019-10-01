@@ -178,8 +178,8 @@ export default {
                     position: absolute;
                     color: #fff;
                     font-size: 25px;
-                    top:-0.5rem;
-                    left: 1.1rem;
+                    top:-8 / 360 * 100vw;
+                    left: 16 / 360 * 100vw;
                 }
             }
         }
