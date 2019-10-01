@@ -52,6 +52,7 @@ export default {
         border-top:1px #eee solid;
         padding: 0 10px;
         box-sizing: border-box;
+        background: #fff;
     }
     .footer-comment{
         padding: 10px 0;

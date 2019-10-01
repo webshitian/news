@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
       <!--文章的详情页的内容-->
       <div class="articel">
           <div class="header">
@@ -7,18 +7,14 @@
                     <span class="iconfont">&#xe630;</span>
                     <span class="iconfont icon-xinlang"></span>
               </div>
-              <span class="focus">关注</span>
+              <span class="focus" v-if="!detail.has_follow">关注</span>
+              <span class="focus focus_active" v-else>已关注</span>
           </div>
 
-          <h3>文章的详情页的内容</h3>
-          <p class="post-info">火星时报 2019年9月28日16:39:50</p>
+          <h3>{{ detail.title }}</h3>
+          <p class="post-info">{{detail.user.nickname}} 2019年9月28日16:39:50</p>
           
-          <div class="post-content">
-                中国女排虽然战胜了荷兰，但第三局却被对手打得有点狼狈，对于这一局的失利，郎平表示：“第三局对手也是加强了发球的攻击性，我们有时候一传不到位时，强攻下不了球。如果和强队打比赛，自己失误这么多，（要赢）很难。”
-
-                江苏球员张常宁在这场比赛中得到了15分。进攻方面，她在28次进攻中得到了10分，比起前几场比赛，进攻得分率不太理想。在第三局局末，张常宁曾被李盈莹替换下场。对于张常宁的表现，郎指导说道：“张常宁今天确实在进攻方面遇到一些困难，打得有一点着急，所以我们对她说还是要保持耐心，有些球她太想进攻直接得分，所以动作有一点变形。”
-
-                此外，第四局时郎平还特意单独嘱咐了张常宁几句，说的是什么内容呢？对此，郎平透露道：“我主要希望她能耐心打，其他人给她保护。”
+          <div class="post-content" v-html="detail.content"> 
           </div>
       </div>
 
@@ -42,13 +38,40 @@
 //导入页脚组件
 import PostFooter from "@/components/PostFooter"
 export default {
+    data(){
+        return{
+            //文章的详情
+            detail:{
+                //user需要在模板中渲染，不然页面会报错
+                user:{}
+
+            }
+        }
+    },
     components:{
         PostFooter
+    },
+    mounted(){
+        //请求文章的详情
+        const {id} = this.$route.params;
+
+        this.$axios({
+            url:"/post/" + id
+            
+        }).then(res => {
+            const {data} = res.data;
+            
+            //保存到详情
+            this.detail = data;
+        })
     }
 }
 </script>
 
 <style scoped lang="less">
+.container{
+    padding-bottom: 100/360 * 100vw;
+}
 .articel{
     padding:10px;
     .header{
@@ -85,6 +108,12 @@ export default {
             color:#fff;
             border-radius: 100px;
         }
+
+        .focus_active{
+            border:1px #ccc solid;
+            color:#333;
+            background:none;
+        }
     }
     h3{
         margin-bottom:5px;
@@ -96,6 +125,10 @@ export default {
     }
     .post-content{
         line-height: 1.5;
+        //img是有服务器返回的标签,不属于当前的作用域，不受scoped的影响
+        /deep/ img{
+            max-width:100%;
+        }
     }
 }
 .post-btns{
