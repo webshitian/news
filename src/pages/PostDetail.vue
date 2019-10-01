@@ -8,7 +8,7 @@
                     <span class="iconfont icon-xinlang"></span>
               </div>
               <span class="focus" v-if="!detail.has_follow" @click="handleFollow">关注</span>
-              <span class="focus focus_active" v-else>已关注</span>
+              <span class="focus focus_active" v-else @click="handleUnfollow">已关注</span>
           </div>
 
           <h3>{{ detail.title }}</h3>
@@ -19,9 +19,13 @@
       </div>
 
       <div class="post-btns">
-          <span>
-              <i class="iconfont">&#xe6a8;</i>1
-              
+          <!--点赞-->
+          <span
+          @click="handleLike"
+          :class="{ like_active:detail.has_like }"
+          >
+              <i class="iconfont">&#xe6a8;</i>
+              {{detail.like_length}}
           </span>
           <span>
               <i class="iconfont icon-weixin"></i>微信
@@ -35,8 +39,10 @@
 </template>
 
 <script>
+
 //导入页脚组件
 import PostFooter from "@/components/PostFooter"
+
 export default {
     data(){
         return{
@@ -52,41 +58,85 @@ export default {
         PostFooter
     },
     methods:{
-        //关注当前的作者
+        // 关注当前的作者
         handleFollow(){
-            //通过作者的id关注用户
+            // 通过作者id关注用户
             this.$axios({
-                url:"/user_follows/" + this.detail.user.ud,
-                //添加头信息
+                url: "/user_follows/" + this.detail.user.id,
+                // 添加头信息
                 headers: {
                     Authorization: localStorage.getItem("token")
                 }
             }).then(res => {
                 const {message} = res.data;
-
-                if(message === '关注成功'){
-                    //修改关注的按钮的状态
+                if(message === "关注成功"){
+                    // 修改关注的按钮的状态
                     this.detail.has_follow = true;
                     this.$toast.success(message)
                 }
             })
+        },
+        
+        // 取消关注
+        handleUnfollow(){
+            // 通过作者id关注用户
+            this.$axios({
+                url: "/user_unfollow/" + this.detail.user.id,
+                // 添加头信息
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            }).then(res => {
+                const {message} = res.data;
+                if(message === "取消关注成功"){
+                    // 修改关注的按钮的状态
+                    this.detail.has_follow = false;
+                    this.$toast.success(message)
+                }
+            })
+        },
+
+        //点赞
+        handleLike(){
+            //通过作者id关注用户
+            this.$axios({
+                url:"/post_like/" + this.detail.id,
+                //添加头信息
+                headers:{
+                    Authorization: localStorage.getItem("token")
+                }
+            }).then(res => {
+                const {message} = res.data;
+                if(message === '点赞成功'){
+                    //修改关注的状态
+                    this.detail.has_like = true;
+                    this.detail.like_length++;
+                }
+                if(message === "取消成功"){
+                    //修改关注的按钮的状态
+                    this.detail.has_like = false;
+                    this.detail.like_length--;
+                }
+
+                this.$toast.success(message);
+            })  
         }
     },
     mounted(){
         //请求文章的详情
         const {id} = this.$route.params;
 
-        //token
+        // token
         const token = localStorage.getItem("token");
-        //请求的配置
+        // 请求的配置
         const config = {
             url:"/post/" + id
         }
 
-        //如果有token就带上，才可能获取到是否关注，是否收藏的属性
+        // 如果有token就带上，才可能获取到是否关注，是否收藏的属性
         if(token){
             config.headers = {
-                Authorization:token
+                Authorization: token
             }
         }
 
@@ -177,14 +227,20 @@ export default {
         border-radius: 50px;
         vertical-align: middle;
         .iconfont{
-            padding-right: 8px;
+            padding-right: 6px;
         }
+         }
         .icon-weixin{
             color: #07c907;
         
         }
-        
+        .like_active{
+        border: 1px  red solid;
+        i{
+            color:red;
+        }
     }
+   
     
     
 }
