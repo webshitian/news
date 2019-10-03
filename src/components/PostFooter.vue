@@ -4,6 +4,7 @@
         <div class="footer" v-show="!isFocus">
             <input type="text" placeholder="写跟帖" @focus="handleFocus">
             
+            <!--用事件的方式跳转并且带上参数-->
             <span class="comment"
             @click="$router.push(`/post_comment/${post.id}`)"
             >
