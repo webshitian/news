@@ -4,36 +4,33 @@
       <HeaderNormal title="精彩跟帖"></HeaderNormal>
       
       <!--评论模块-->
-      <div class="comment">
+      <div class="comment"
+      v-for="(item,index) in comments"
+      :key="index"
+      >
           <div class="comment-info">
             
               <!--左侧的用户的信息-->
               <div class="comment-user">
                   <!--头像-->
-                  <img src="../../../static/default_green.jpg" alt="">
+                  <img :src="$axios.defaults.baseURL + item.user.head_img" v-if="item.user.head_img">
+                  <img src="../../../static/default_green.jpg" v-else>
                   <!--用户的名字-->
                   <div class="user-info">
-                      <p>web势天</p>
+                      <p>{{item.user.nickname}}</p>
                       <span>2019年10月3日13:39:13</span>
                   </div>
               </div>
               <span class="reply">回复</span>
           </div>
-          <!--评论楼层-->
-          <div class="comment-floor">
-              <div class="floor-header">
-                  <span>web小石潭</span>
-                  <i>2019年10月3日13:45:51</i>
-                  <em>回复</em>
-              </div>
-              <div class="comment-content">
-                  仿苏宁易购鼠标点击搜索框提示信息
-              </div>
-          </div>
+          <!--渲染评论楼层的组件-->
+          <CommentFloor v-if="item.parent" :data="item.parent"/>
           <div class="comment-content">
-                车主注意啦！9月下旬部分临时泊位进行清洁保养
+                {{item.content}}
           </div>
       </div>
+      <!--页脚组件-->
+      <PostFooter :post="detail"/>
   </div>
 </template>
 
