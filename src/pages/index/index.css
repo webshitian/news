@@ -1,0 +1,48 @@
+.header {
+  height: 13.88888889vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  background: #f00;
+  position: relative;
+}
+.header .logo {
+  font-size: 7.5vw;
+  color: #fff;
+  margin-bottom: 32px;
+  margin-left: 8px;
+}
+.header .personal {
+  position: absolute;
+  bottom: 13px;
+  right: 10px;
+  font-size: 6.94444444vw;
+  color: #fff;
+}
+.header .header-search {
+  height: 9.44444444vw;
+  background: rgba(255, 255, 255, 0.5);
+  flex: 1;
+  margin-left: 1.5rem;
+  margin-right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 50px;
+}
+.header .header-search span {
+  margin-bottom: 13px;
+}
+.header .header-search i {
+  font-size: 14px;
+  margin-left: 5px;
+}
+ /deep/ .van-tabs_nav {
+  backgrond: #f6f6f6;
+}
+ /deep/ .van-tabs_line {
+  width: 40px;
+  height: 1px;
+}

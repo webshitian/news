@@ -46,8 +46,8 @@
               {{detail.like_length}}
           </span>
           <span>
-              <i class="iconfont icon-weixin"></i>微信
-              
+              <i class="iconfont icon-weixin"></i>
+              <a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#1">微信</a>
           </span>
       </div>
       
@@ -269,23 +269,7 @@ export default {
 
             }
         }
-        
-        // .focus{
-        //     width:62 / 360 * 100vw;
-        //     height: 26 / 360 * 100vw;
-        //     line-height: 26 / 360 * 100vw;
-        //     text-align: center;
-        //     font-size:12px;
-        //     background:red;
-        //     color:#fff;
-        //     border-radius: 100px;
-        // }
 
-        // .focus_active{
-        //     border:1px #ccc solid;
-        //     color:#333;
-        //     background:none;
-        // }
     }
     h3{
         margin-bottom:5px;
@@ -317,7 +301,7 @@ export default {
         border-radius: 50px;
         vertical-align: middle;
         .iconfont{
-            padding-right: 6px;
+            padding-right: 2px;
         }
          }
         .icon-weixin{
