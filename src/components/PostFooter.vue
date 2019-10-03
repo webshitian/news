@@ -3,12 +3,26 @@
         <!--普通页脚-->
         <div class="footer" v-show="!isFocus">
             <input type="text" placeholder="写跟帖" @focus="handleFocus">
+            
             <span class="comment">
-                <em>1020</em>
+                <em>{{post.comment_length}}</em>
                 <i class="iconfont">&#xe679;</i> 
             </span>
 
-            <i class="iconfont">&#xe657;</i>
+            <!--收藏-->
+            <!--
+            <i class="iconfont" 
+            :class="{star_active:post.has_star}"
+            @click="$emit('handleStar')"
+            >&#xe657;</i>
+            -->
+
+            <!-- 收藏 -->
+            <i 
+            class="iconfont iconshoucang" 
+            :class="{star_active:post.has_star}"
+            @click="$emit('handleStar')"
+            >&#xe657;</i>
 
             <i class="iconfont">&#xe8b8;</i>
         </div>
@@ -34,6 +48,10 @@ export default {
             isFocus:false
         }
     },
+    
+    //接收文章的详情
+    props:["post"],
+
     methods:{
         //获取焦点时候触发
         handleFocus(){
@@ -117,6 +135,9 @@ export default {
         }
         .iconfont{
             font-size: 24px;
+        }
+        .star_active{
+            color:red;
         }
     }
 </style>
