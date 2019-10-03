@@ -1,6 +1,7 @@
 <template>
   <div>
-      123
+      <!--头部组件-->
+      <HeaderNormal title="精彩跟帖"></HeaderNormal>
   </div>
 </template>
 
