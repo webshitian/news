@@ -4,12 +4,12 @@
       <!-- 红色块头部 -->
       <div class="header">
           <span class="iconfont logo">&#xe600;</span>
-
-          <div class="header-search">
-              <span class="iconfont">&#xe6d5;</span>
-              <i>搜索新闻</i>
-          </div>
-
+          <router-link to="/search" class="link-search">
+            <div class="header-search">
+                <span class="iconfont">&#xe6d5;</span>
+                <i>搜索新闻</i>
+            </div>
+          </router-link>
           <router-link to="/personal">
             <span class="iconfont  personal">&#xe60a;</span>
           </router-link>

@@ -6,7 +6,9 @@ import EditProfile from "@/pages/EditProfile";
 import UserFollow from "@/pages/UserFollow";
 import UserComment from "@/pages/UserComment";
 import PostDetail from "@/pages/PostDetail";
-import Index from "@/pages/index/Index";
+import Search from "@/pages/Search";
+import Index from "@/pages/index/Index.vue";
+
 
 import Comment from "@/pages/comment/Index.vue";
 //路由:2.创建路由配置
@@ -17,6 +19,7 @@ const routes = [
     {path:"/edit_profile",component:EditProfile},
     {path:"/user_follow",component:UserFollow},
     {path:"/user_comment",component:UserComment},
+    {path:"/search",component:Search},
     {path:"/",component:Index},
     // :id文章的id
     {path:"/post_detail/:id",component:PostDetail},
