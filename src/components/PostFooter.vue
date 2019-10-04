@@ -35,6 +35,7 @@
             rows="3" 
             ref="textarea" 
             v-model="value"
+            :placeholder="placeholder"
             @blur="handleBlur"
             :autofocus="isFocus"
             ></textarea>
@@ -50,13 +51,22 @@ export default {
             //输入框是否获得焦点
             isFocus:false,
             //评论的内容
-            value:""
+            value:"",
+            //输入框的提示文字
+            placeholder:"写跟帖",
         }
     },
     
     //接收文章的详情
-    props:["post"],
+    //replyComment 要回复的评论
+    props:["post","replyComment"],
 
+    watch:{
+        replyComment(){
+            this.isFocus = true;
+            this.placeholder = '@' + this.replyComment.user.nickname;
+        }
+    },
     methods:{
         //获取焦点时候触发
         handleFocus(){
@@ -78,7 +88,7 @@ export default {
             }
 
             this.$axios({
-                url:"/post_comment/" + this.post.id,
+                url: "/post_comment/" + this.post.id,
                 method:"POST",
                 //添加头信息
                  headers: {

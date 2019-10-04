@@ -21,7 +21,7 @@
                       <span>2019年10月3日13:39:13</span>
                   </div>
               </div>
-              <span class="reply">回复</span>
+              <span class="reply" @click="handleReply(item)">回复</span>
           </div>
           <!--渲染评论楼层的组件-->
           <CommentFloor v-if="item.parent" :data="item.parent"/>
@@ -30,7 +30,16 @@
           </div>
       </div>
       <!--页脚组件-->
-      <PostFooter :post="detail" @getComments="getComments"/>
+      <!--
+          post文章的详情
+          replyComment:要回复的评论
+          getComment:发布评论成功后重新请求评论的列表
+      -->
+      <PostFooter 
+      :post="detail" 
+      :replyComment="replyComment"
+      @getComments="getComments"
+      />
   </div>
 </template>
 
