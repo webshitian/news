@@ -63,8 +63,11 @@ export default {
 
     watch:{
         replyComment(){
-            this.isFocus = true;
-            this.placeholder = '@' + this.replyComment.user.nickname;
+           //评论回复有值的时候才显示@的用户名
+           if(this.replyComment){
+                this.isFocus = true,
+                this.placeholder = '@' + this.replyComment.user.nickname;
+           }
         }
     },
     methods:{
@@ -77,6 +80,12 @@ export default {
         handleBlur(){
             if(!this.value){
                 this.isFocus = false;
+
+                //如果有回复的评论，清空回复的评论
+                if(this.replyComment){
+                    this.$emit("handleReply",null);
+                    this.placeholder = "写跟帖"
+                }    
             }
         },
 
