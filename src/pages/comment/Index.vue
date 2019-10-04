@@ -4,10 +4,22 @@
       <HeaderNormal title="精彩跟帖"></HeaderNormal>
       
       <!--评论模块-->
-      <div class="comment"
-      v-for="(item,index) in comments"
-      :key="index"
-      >
+      <!-- 
+          v-model:是否在加载
+          finished:是否加载完毕
+          load:到底部触发加载
+       -->
+       <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        :immediate-check="false"
+        @load="onLoad"
+       >
+       <div class="comment"
+        v-for="(item,index) in comments"
+        :key="index"
+        >
           <div class="comment-info">
             
               <!--左侧的用户的信息-->
@@ -24,11 +36,16 @@
               <span class="reply" @click="handleReply(item)">回复</span>
           </div>
           <!--渲染评论楼层的组件-->
-          <CommentFloor v-if="item.parent" :data="item.parent"/>
+          <CommentFloor 
+          v-if="item.parent" 
+          :data="item.parent"
+          @handleReply="handleReply"
+          />
           <div class="comment-content">
                 {{item.content}}
           </div>
       </div>
+       </van-list>
       <!--页脚组件-->
       <!--
           post文章的详情
