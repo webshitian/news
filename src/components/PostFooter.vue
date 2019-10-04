@@ -34,11 +34,11 @@
             <textarea 
             rows="3" 
             ref="textarea" 
-            @blur="isFocus = false"  
+            v-model="value"
+            @blur="handleBlur"
             :autofocus="isFocus"
-            placeholder="回复:@火星看女排"
             ></textarea>
-            <span>发送</span>
+            <span @click="handleSubmit">发送</span>
         </div>
     </div>  
 </template>
@@ -48,7 +48,9 @@ export default {
     data(){
         return{
             //输入框是否获得焦点
-            isFocus:false
+            isFocus:false,
+            //评论的内容
+            value:""
         }
     },
     
@@ -59,6 +61,49 @@ export default {
         //获取焦点时候触发
         handleFocus(){
             this.isFocus = true;
+        },
+        
+        //输入框失去焦点时候触发
+        handleBlur(){
+            if(!this.value){
+                this.isFocus = false;
+            }
+        },
+
+        //发布评论
+        handleSubmit(){
+            
+            if(!this.value){
+                return;
+            }
+
+            this.$axios({
+                url:"/post_comment/" + this.post.id,
+                method:"POST",
+                //添加头信息
+                 headers: {
+                    Authorization: localStorage.getItem("token")
+                },
+                data:{
+                    content:this.value
+                }
+            }).then(res => {
+                const {message} = res.data;
+                
+                if(message === "评论发布成功"){
+                    //触发父组件方法更新评论的列表
+                    this.$emit("getComments",this.post.id);
+
+                    //隐藏输入框
+                    this.isFocus = false;
+
+                    //清空输入框的值
+                    this.value = "",
+                    
+                    //滚动到底部
+                    window.scrollTo(0, document.body.offsetHeight);
+                }
+            })
         }
     }
 }
