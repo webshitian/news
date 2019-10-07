@@ -1,7 +1,7 @@
 //文章列表模块
 import PostCard from "@/components/PostCard"
 export default {
-
+    name: "index", // 可以命名为任意字符串
     data(){
           return{
                 // 当前m默认的栏目，没有登录应该等于0，有登录等于1，最终的效果为了默认显示头条

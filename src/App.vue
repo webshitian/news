@@ -1,8 +1,11 @@
 <template>
 	<!-- template最外层只能包含一个标签 -->
   	<div>
-      <!-- 组件占位符 -->
-      <router-view></router-view>
+      <!-- 千万不要加空格 -->
+      <keep-alive include="index,search">    
+        <!-- 组件占位符 -->
+        <router-view></router-view>
+      </keep-alive>
   </div>
 </template>
 

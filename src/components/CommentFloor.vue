@@ -54,4 +54,7 @@ export default {
         }
     }
 }
+.comment-floor:not(:first-child){
+    border-top:none;
+}
 </style> 
